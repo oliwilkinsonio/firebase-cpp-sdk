@@ -53,7 +53,7 @@ android {
   }
 
   defaultConfig {
-    applicationId 'com.google.android.admob.testapp'
+    applicationId 'com.google.android.gma.testapp'
     minSdkVersion 19
     targetSdkVersion 28
     versionCode 1
