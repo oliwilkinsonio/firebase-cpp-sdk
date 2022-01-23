@@ -462,12 +462,7 @@ jobs:
         shell: cmd
         run: |
           mode con:cols=140 lines=70
-          python scripts/gha/build_testapps.py --p Android \
-            --t ${{ needs.check_and_prepare.outputs.apis }}  \
-            --output_directory "${{ github.workspace }}" \
-            --artifact_name "android-${{ matrix.os }}" \
-            --noadd_timestamp \
-            --short_output_paths
+          python scripts/gha/build_testapps.py --p Android --t ${{ needs.check_and_prepare.outputs.apis }} --output_directory "${{ github.workspace }}" --artifact_name "android-${{ matrix.os }}" --noadd_timestamp --short_output_paths
       - name: Build integration tests
         shell: bash
         run: |
