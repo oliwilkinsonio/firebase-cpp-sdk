@@ -116,7 +116,7 @@ if(ANDROID)
   # Export ANativeActivity_onCreate(),
   # Refer to: https://github.com/android-ndk/ndk/issues/381.
   set(CMAKE_SHARED_LINKER_FLAGS
-      "${CMAKE_SHARED_LINKER_FLAGS} -u ANativeActivity_onCreate")
+      "${CMAKE_SHARED_LINKER_FLAGS} -no-threads -u ANativeActivity_onCreate")
 
   add_library(gtest STATIC
     ${GOOGLETEST_ROOT}/src/googletest/src/gtest-all.cc)
