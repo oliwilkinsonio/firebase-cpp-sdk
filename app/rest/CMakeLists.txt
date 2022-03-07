@@ -58,6 +58,7 @@ if(MSVC)
 elseif(CMAKE_SYSTEM_NAME STREQUAL "Linux")
   set(rest_additional_defines
       -DFIREBASE_SSL_CAPATH="/etc/ssl/certs"
+      FIREBASE_SSL_CAINFO="/etc/ssl/certs/ca-certificates.crt"
       )
 else()
   set(rest_additional_defines)

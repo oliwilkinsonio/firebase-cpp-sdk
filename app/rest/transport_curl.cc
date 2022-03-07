@@ -457,6 +457,10 @@ bool BackgroundTransportCurl::PerformBackground(Request* request) {
   CheckOk(curl_easy_setopt(curl_, CURLOPT_CAPATH, FIREBASE_SSL_CAPATH),
           "CA Path");
 #endif
+#ifdef FIREBASE_SSL_CAINFO
+  CheckOk(curl_easy_setopt(curl_, CURLOPT_CAINFO, FIREBASE_SSL_CAINFO),
+          "CA Info");
+#endif
 
   // Set callback functions.
   CheckOk(curl_easy_setopt(curl_, CURLOPT_HEADERFUNCTION, CurlHeaderCallback),
