@@ -71,7 +71,7 @@ class ResponseJson : public Response {
       Response::MarkCompleted();
       return;
     }
-
+    LogDebug(GetBody());
     // Parse and verify JSON string in body. FlatBuffer parser does not support
     // online parsing. So we only parse the body when we get everything.
     bool parse_status = parser_->Parse(GetBody());
