@@ -440,6 +440,8 @@ void BackgroundTransportCurl::CheckOk(CURLcode code, const char* msg) {
 
 bool BackgroundTransportCurl::PerformBackground(Request* request) {
   RequestOptions& options = request->options();
+  CheckOk(curl_easy_setopt(curl_, CURLOPT_VERBOSE, 1L),
+          "set verbose output");
   CheckOk(curl_easy_setopt(curl_, CURLOPT_ERRORBUFFER, err_buf_),
           "set error buffer");
 

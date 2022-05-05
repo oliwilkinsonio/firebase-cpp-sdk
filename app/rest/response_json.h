@@ -64,7 +64,7 @@ class ResponseJson : public Response {
 
   // When transmission is completed, we parse the response JSON string.
   void MarkCompleted() override {
-    LogDebug("Response status: %d", status());
+    LogDebug("Response status: %d, sdk error %d", status(), sdk_error_code());
 
     // Body could be empty if request failed. Deal this case first since
     // flatbuffer parser does not allow empty input.
@@ -109,6 +109,7 @@ class ResponseJson : public Response {
 
   // When the response fails, ensure that application_data_ is set.
   void MarkFailed() override {
+    LogDebug("flatbuffers::ResponseJson::MarkFailed");
     application_data_.reset(new FbsTypeT());
     Response::MarkFailed();
   }
