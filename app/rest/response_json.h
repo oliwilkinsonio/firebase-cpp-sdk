@@ -64,14 +64,23 @@ class ResponseJson : public Response {
 
   // When transmission is completed, we parse the response JSON string.
   void MarkCompleted() override {
+    LogDebug("Response status: %d", status());
+
     // Body could be empty if request failed. Deal this case first since
     // flatbuffer parser does not allow empty input.
     if (strlen(GetBody()) == 0) {
       application_data_.reset(new FbsTypeT());
       Response::MarkCompleted();
       return;
+    }    
+
+    const char* body = GetBody();
+    if (body == nullptr) {
+      LogDebug("Response is empty");
+    } else {
+      LogDebug("Response json: %s", body);
     }
-    LogDebug(GetBody());
+    
     // Parse and verify JSON string in body. FlatBuffer parser does not support
     // online parsing. So we only parse the body when we get everything.
     bool parse_status = parser_->Parse(GetBody());
